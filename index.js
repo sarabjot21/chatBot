@@ -45,6 +45,14 @@ app.post('/webhook', (req, res) => {
   });
   function sendText(sender, text){
       let messageData = {text: text}
+      switch(text){
+        case 'hi' || "hello":
+        messageData="hey,What's up ";
+        break;
+        default:
+        messageData="for more info: https://neta.co.in";
+        break;
+    }
       request({
           url: "https://graph.facebook.com/v2.6/me/messages",
           qs: {access_token: token},
