@@ -47,10 +47,10 @@ app.post('/webhook', (req, res) => {
       let messageData = {text: text}
       switch(text){
         case 'hi' || "hello":
-        messageData="hey,What's up ";
+        messageData.text="hey,What's up ";
         break;
         default:
-        messageData="for more info: https://neta.co.in";
+        messageData.text="for more info: https://neta.co.in";
         break;
     }
       request({
