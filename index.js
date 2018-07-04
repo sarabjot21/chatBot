@@ -7,7 +7,7 @@ const
   request = require('request'),
   app = express().use(bodyParser.json()); // creates express http server
 
-  let token = "EAAaZBFnOFPhYBAIRvDPqiwJdD2ujJ4WAxBeOY0wI19ZBkatTOwR8lrznwGcdjMTVC8J84eSSA74V7uD0AxbiqmhGDpUIuX75i4TD"
+  let token = "EAAaZBFnOFPhYBAJUEOXgFa7fHg8PfUwE0d9X4nEJZAN1mOF8SEZC7MfthoKAR1xuHOQPz0f9lJdSWF0rGE2H3VBnDwK9zpJ67Y122AyOEZBSzLQTqGbl58sxVIhSElGZBZBDZBEK3LMqwRVUQ6SUZB1COjfJhZAkPWhy1QsG91ZAm57ekB9i5KZAOqX"
   // Creates the endpoint for our webhook 
 app.post('/webhook', (req, res) => {  
  let messaging_events = req.body.entry[0].messaging
