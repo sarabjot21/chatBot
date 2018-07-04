@@ -6,31 +6,61 @@ const
   bodyParser = require('body-parser'),
   app = express().use(bodyParser.json()); // creates express http server
 
+  let token = "EAAaZBFnOFPhYBAIRvDPqiwJdD2ujJ4WAxBeOY0wI19ZBkatTOwR8lrznwGcdjMTVC8J84eSSA74V7uD0AxbiqmhGDpUIuX75i4TD"
   // Creates the endpoint for our webhook 
 app.post('/webhook', (req, res) => {  
- 
-    let body = req.body;
+ let messaging_events = req.body.entry[0].messaging
+ for(let i = 0; i < messaging_events.length; i++)
+ {
+     let event = messaging_events[i]
+     let sender = event.sender.id
+     if (event.message && event.message.text){
+         let text = event.message.text
+         sendText(sender, "Text echo: " + text.substring(0,100))
+     }
+ }
+ res.sendStatus(200)
+    // let body = req.body;
   
-    // Checks this is an event from a page subscription
-    if (body.object === 'page') {
+    // // Checks this is an event from a page subscription
+    // if (body.object === 'page') {
   
-      // Iterates over each entry - there may be multiple if batched
-      body.entry.forEach(function(entry) {
+    //   // Iterates over each entry - there may be multiple if batched
+    //   body.entry.forEach(function(entry) {
   
-        // Gets the message. entry.messaging is an array, but 
-        // will only ever contain one message, so we get index 0
-        let webhook_event = entry.messaging[0];
-        console.log(webhook_event);
-      });
+    //     // Gets the message. entry.messaging is an array, but 
+    //     // will only ever contain one message, so we get index 0
+    //     let webhook_event = entry.messaging[0];
+    //     console.log(webhook_event);
+    //   });
   
-      // Returns a '200 OK' response to all requests
-      res.status(200).send('EVENT_RECEIVED');
-    } else {
-      // Returns a '404 Not Found' if event is not from a page subscription
-      res.sendStatus(404);
-    }
+    //   // Returns a '200 OK' response to all requests
+    //   res.status(200).send('EVENT_RECEIVED');
+    // } else {
+    //   // Returns a '404 Not Found' if event is not from a page subscription
+    //   res.sendStatus(404);
+    // }
   
   });
+  function sendText(sender, text){
+      let messageData = {text: text}
+      request({
+          url: "https://graph.facebook.com/v2.6/me/messages",
+          qs: {access_token: token},
+          method: "POST",
+          json: {
+              receipt: {id: sender},
+              message : messageData
+          }
+        },function(error, response, body){
+            if(error){
+                console.log("sending error")
+            }
+            else if(response.body.error){
+                console.log("response body error")
+            }
+        })
+  }
 
   // Adds support for GET requests to our webhook
 app.get('/webhook', (req, res) => {
