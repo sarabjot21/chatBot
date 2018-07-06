@@ -50,7 +50,7 @@ function sendText(sender, text) {
     let messageData ={};
     switch (text) {
     case 'hi' || "hello":
-        let messageData = {text: text}
+        messageData = {text: text}
         messageData.text = "hey,What's up ";
         break;
     // case 'Postback Button':
