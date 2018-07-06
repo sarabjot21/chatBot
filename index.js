@@ -89,23 +89,23 @@ function sendText(sender, text) {
                 "elements": [
                   {
                     "title": "Classic Blue T-Shirt",
-                    "image_url": "https://peterssendreceiveapp.ngrok.io/img/blue-t-shirt.png",
+                    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyNhi0bN8_bVbjMVmVb5W0qcu7lWhheyvQ0HRYuZbhRkZgQJfN8w",
                     "subtitle": "100% Cotton, 200% Comfortable",
                     "default_action": {
                       "type": "web_url",
-                      "url": "https://peterssendreceiveapp.ngrok.io/view?item=101",
-                      "messenger_extensions": true,
-                      "webview_height_ratio": "tall",
-                      "fallback_url": "https://peterssendreceiveapp.ngrok.io/"
+                      "url": "https://www.amazon.in/s/ref=nb_sb_noss?url=search-alias%3Daps&field-keywords=t+shirt",
+                    //   "messenger_extensions": true,
+                    //   "webview_height_ratio": "tall",
+                    //   "fallback_url": "https://peterssendreceiveapp.ngrok.io/"   
                     },
                     "buttons": [
                       {
                         "title": "Shop Now",
                         "type": "web_url",
                         "url": "https://peterssendreceiveapp.ngrok.io/shop?item=101",
-                        "messenger_extensions": true,
-                        "webview_height_ratio": "tall",
-                        "fallback_url": "https://peterssendreceiveapp.ngrok.io/"            
+                        // "messenger_extensions": true,
+                        // "webview_height_ratio": "tall",
+                        // "fallback_url": "https://peterssendreceiveapp.ngrok.io/"            
                       }
                     ]        
                   }
